@@ -1,0 +1,64 @@
+<section class="row m-0">
+
+  <nav class="nav flex-column" style="width: 5%;">
+    <a title="Imprimir Ponto">
+      <i class="fa fa-print fa-2x m-3" appVermelhoHover (click)="imprimirSaldos()"></i>
+    </a>
+  </nav>
+
+  <div style="width: 95%;">
+
+    <h4>Saldos</h4>
+    
+    <app-pesquisa (aoPesquisar)="pesquisar($event)" [valor]="matriculaPesquisa" visivelSeAdministrador>
+    </app-pesquisa>
+
+    <div class="row">
+      <div class="col-lg-5 p-3">
+        <b>Funcionário:</b> {{ descricaoFuncionario }}
+      </div>
+    </div>
+    
+    <table class="table table-hover table-sm">
+      <thead class="thead-dark">
+        <tr class="table-bordered">
+          <th colspan="1" class="border-right">Saldo</th>
+          <th colspan="2" class="border-right">Banco de Horas</th>
+          <th colspan="2">Compensação de Greve</th>
+        </tr>
+        <tr>
+          <th class="border-right">Período</th>
+    
+          <th>Total</th>
+          <th class="border-right">Acumulado</th>
+          
+          <th>Total</th>
+          <th>Acumulado</th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <tr *ngFor="let ponto of pontoPagina?.pontos" (click)="selecionarSaldoPonto(ponto)">
+          <th scope="row" class="border-right">{{ ponto.periodo.dataInicio | date: 'MM/yyyy' }}</th>
+    
+            <td>{{ ponto.saldoBanco }}</td>
+            <td class="border-right">{{ ponto.saldoBancoAcumulado }}</td>
+    
+            <td>{{ ponto.saldoGreve }}</td>
+            <td>{{ ponto.saldoGreveAcumulado }}</td>
+        </tr>
+      </tbody>
+    
+      <tfoot class="cabecalho">
+        <tr>
+          <td colspan="7">&nbsp;</td>
+        </tr>
+      </tfoot>
+    </table>
+    
+    <ngb-pagination class="d-flex justify-content-center my-4" [collectionSize]="pontoPagina?.total" [page]="pagina"
+      [maxSize]="5" [pageSize]="tamanho" (pageChange)="mudarPagina($event)" *ngIf="pontoPagina">
+    </ngb-pagination>
+
+  </div>
+</section>

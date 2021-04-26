@@ -1,0 +1,31 @@
+<h4 class="text-center">Login</h4>
+
+<form [formGroup]="form" class="form mt-4" (submit)="login()">
+
+  <div class="form-group">
+    <input #matriculaRef formControlName="matricula" class="form-control" placeholder="Matrícula" autofocus>
+
+    <div *ngIf="formControls.matricula.invalid && (formControls.matricula.dirty || formControls.matricula.touched)">
+      <app-mensagem *ngIf="formControls.matricula.errors?.required" texto="Informe a matrícula.">
+      </app-mensagem>
+      <app-mensagem *ngIf="formControls.matricula.errors?.minlength || formControls.matricula.errors?.maxlength" texto="Informe 5 digítos.">
+      </app-mensagem>
+      <app-mensagem *ngIf="formControls.matricula.errors?.numero" texto="Informe somente números.">
+      </app-mensagem>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input formControlName="senha" type="password" class="form-control" placeholder="Senha">
+
+    <div *ngIf="formControls.senha.invalid && (formControls.senha.dirty || formControls.senha.touched)">
+      <app-mensagem *ngIf="formControls.senha.errors?.required" texto="Informe a senha!">
+      </app-mensagem>
+    </div>
+    
+  </div>
+
+  <button [disabled]="form.invalid" type="submit" class="btn btn-primary btn-block">Autenticar</button>
+</form>
+
+<p>Não possui senha cadastrada? <a [routerLink]="['cadastro']">Cadastrar Senha!</a></p>

@@ -1,0 +1,11 @@
+<div [ngClass]="{ 'menu-ativo': isVisivel}">
+    <div class="barra-menu">
+        <i tabindex="0" 
+            (keyup.space)="alternar()" 
+            (click)="alternar()"
+            class="fa fa-window-close">
+        </i>
+        <ng-content></ng-content>
+    </div>
+    <div class="sobreposicao" (click)="alternar()"></div>
+</div>

@@ -1,0 +1,63 @@
+<form [formGroup]="form" class="form mt-4" (submit)="gravar()">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-title">Edição do Usuário</h4>
+        <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title"
+            (click)="modal.dismiss('Fechar')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row justify-content-center">
+            <section class="card col-md-10 p-0 m-4">
+    
+                <div class="card-header cabecalho">
+                    Usuário
+                </div>
+                <div class="card-body">            
+                    <fieldset disabled>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 fonte-pequena">
+                                <label>Matrícula</label>
+                                <input type="text" class="form-control" [value]="usuario.matricula">
+                            </div>                        
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12 fonte-pequena">
+                                <label>Nome</label>
+                                <input type="text" class="form-control" [value]="usuario.nome">
+                            </div>                           
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 fonte-pequena">
+                                <label>Setor</label>
+                                <input type="text" class="form-control" [value]="usuario.setor.sigla">
+                            </div>
+                            <div class="form-group col-md-6 fonte-pequena">
+                                <label>Perfil</label>
+                                <input type="text" class="form-control" [value]="usuario.perfil.nome">
+                            </div>
+                        </div>
+                    </fieldset>   
+                    <fieldset>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 fonte-pequena">
+                                <label>Senha</label>
+                                <input type="password" class="form-control" formControlName="senha" readonly="true">
+                            </div>
+                            <div class="form-group col-md-6 fonte-pequena">
+                                <label>&nbsp;</label><br />
+                                <button type="button" class="btn btn-secondary" (click)="limparSenha()">Limpar</button>
+                            </div>
+                        </div>
+                    </fieldset>         
+                </div>
+    
+            </section>
+        </div>
+    </div>
+    <div class="modal-footer row justify-content-center">
+        <button type="button" class="btn btn-secondary col-md-2 m-4" (click)="modal.dismiss('Cancelar')">Cancelar</button>        
+        <button type="submit" class="btn btn-primary col-md-2 m-4" [disabled]="form.invalid">Gravar</button>
+    </div>
+</form>

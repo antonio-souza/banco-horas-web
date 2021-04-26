@@ -1,0 +1,7 @@
+<div class="text-center mt-3 mb-3">
+    <form [formGroup]="pesquisaForm" class="form mt-4" (submit)="pesquisar()">
+        <i aria-hidden="true" class="fa fa-search mr-1"></i>
+        <input formControlName="valor" class="rounded" type="search" placeholder="Pesquisa..." [value]="valor">
+        <button type="submit" class="btn btn-primary">Pesquisar</button>
+    </form>
+</div>

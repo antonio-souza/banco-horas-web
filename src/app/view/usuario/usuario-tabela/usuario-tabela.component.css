@@ -1,0 +1,8 @@
+th { text-align: center; }
+td { text-align: center; }
+
+.cabecalho td, .cabecalho th {
+    color: #fff;
+    background-color: #212529;
+    border-color: #32383e;
+}

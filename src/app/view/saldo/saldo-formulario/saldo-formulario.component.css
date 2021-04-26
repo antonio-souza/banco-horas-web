@@ -1,0 +1,14 @@
+.cabecalho {
+    color: #fff;
+    background-color: #212529;
+    border-color: #32383e;
+}
+
+.fonte-pequena label, .fonte-pequena input, .fonte-pequena select, .fonte-pequena select option {
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    font-size: 13px;
+    height: 30px;  
+    margin: 0 auto;
+    padding: 1; 
+}

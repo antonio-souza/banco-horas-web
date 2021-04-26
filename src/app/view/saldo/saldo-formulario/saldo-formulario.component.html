@@ -1,0 +1,63 @@
+<form [formGroup]="form" class="form mt-4" (submit)="gravar()" *ngIf="ponto">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-title">Saldos do Ponto</h4>
+        <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title"
+            (click)="modal.dismiss('Fechar')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row justify-content-center">
+            <section class="card col-md-10 p-0 m-4">
+    
+                <div class="card-header cabecalho">
+                    Período
+                </div>
+                <div class="card-body">            
+                    <fieldset disabled>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 fonte-pequena">
+                                <label>Competência</label>
+                                <input type="text" class="form-control" [value]="ponto.periodo.dataInicio | date: 'MM/yyyy'">
+                            </div>             
+                        </div>
+                    </fieldset>            
+                </div>
+    
+                <div class="card-header cabecalho">
+                    Saldo
+                </div>
+                <div class="card-body">            
+                    <fieldset>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 fonte-pequena">
+                                <label>Banco de Horas</label>
+                                <input type="text" class="form-control" formControlName="saldoBanco"
+                                    placeholder="+___:__" (keyup)="montarHora3DigitosComSinal($event.target)" maxlength="7">
+                            </div>
+                            <div class="form-group col-md-6 fonte-pequena">
+                                <label>CompensaçãoGreve</label>
+                                <input type="text" class="form-control" formControlName="saldoGreve"
+                                    placeholder="+___:__" (keyup)="montarHora3DigitosComSinal($event.target)" maxlength="7">
+                            </div> 
+                            
+                            <div class="form-group col-md-6 fonte-pequena">
+                                <app-mensagem *ngIf="formControls.saldoBanco.errors?.hora3DigitosComSinal" texto="Formato inválido: (+/-999:59).">
+                                </app-mensagem>
+                            </div>
+                            <div class="form-group col-md-6 fonte-pequena">
+                                <app-mensagem *ngIf="formControls.saldoGreve.errors?.hora3DigitosComSinal" texto="Formato inválido: (+/-999:59).">
+                                </app-mensagem>
+                            </div>                            
+                        </div>
+                    </fieldset>            
+                </div>
+    
+            </section>
+        </div>
+    </div>
+    <div class="modal-footer row justify-content-center">
+        <button type="button" class="btn btn-secondary col-md-2 m-4" (click)="modal.dismiss('Cancelar')">Cancelar</button>
+        <button type="submit" class="btn btn-primary col-md-2 m-4" [disabled]="form.invalid">Gravar</button>
+    </div>
+</form>

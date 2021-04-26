@@ -1,0 +1,47 @@
+<section class="row m-0">
+
+  <nav class="nav flex-column" style="width: 5%;">    
+  </nav>
+
+  <div style="width: 95%;">
+
+    <h4>Usuários</h4>
+
+    <app-pesquisa (aoPesquisar)="pesquisar($event)" [valor]="criterio">
+    </app-pesquisa>
+
+
+    <table class="table table-hover table-sm" *ngIf="usuarioPagina">
+      <thead class="thead-dark">
+        <tr>
+          <th>Matrícula</th>
+          <th>Funcionário</th>
+          <th>Setor</th>
+          <th>Perfil</th>
+          <th>Senha</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let usuario of usuarioPagina.usuarios" (click)="selecionarUsuario(usuario)"> 
+          <th scope="row">{{ usuario.matricula }}</th>
+          <td>{{ usuario.nome }}</td>
+          <td>{{ usuario.setor.sigla }}</td>
+          <td>{{ usuario.perfil.nome }}</td>
+          <td>{{ usuario.senha ? '***********************************' : '' }}</td>
+        </tr>
+      </tbody>
+
+      <tfoot class="cabecalho">
+        <tr>
+          <td colspan="5">&nbsp;</td>
+        </tr>
+      </tfoot>
+    </table>
+    
+    <ngb-pagination class="d-flex justify-content-center my-4" [collectionSize]="usuarioPagina?.total" [page]="pagina"
+      [maxSize]="5" [pageSize]="tamanho" (pageChange)="mudarPagina($event)" *ngIf="usuarioPagina">
+    </ngb-pagination>
+    
+  </div>
+</section>

@@ -1,0 +1,39 @@
+<header class="fixed-top">
+
+    <nav class="navbar navbar-light bg-white">
+        <a class="navbar-brand">
+            <i 
+                tabindex="0" 
+                (keyup.space)="menu.alternar()" 
+                (click)="menu.alternar()" 
+                class="fa fa-bars mr-2"
+                visivelSeLogado>
+            </i>
+            BHR - Banco de Horas
+        </a>
+
+        <app-menu #menu>
+            <ul class="list-unstyled" (click)="menu.alternar()">
+                <li><a [routerLink]="['saldo']">Saldos</a></li>
+                <li><a [routerLink]="['usuario']" *ngIf="isAdministrador">Usuários</a></li>
+                <li><a href="#" (click)="logout()">Logout</a></li>
+            </ul>
+        </app-menu>
+
+        <div *ngIf="usuario; else linkLogin">
+            <i class="fa fa-user-circle mr-1"></i>
+            {{ usuario.nome }}
+            <a href="#" (click)="logout()">(Logout)</a>
+        </div>
+
+        <ng-template #linkLogin>
+            <span>
+                <a [routerLink]="['']">Por favor, faça login!</a>
+            </span>
+        </ng-template>
+    </nav>
+    <div class="fixed-top">
+        <app-progresso></app-progresso>
+        <app-alerta></app-alerta>
+    </div>
+</header>

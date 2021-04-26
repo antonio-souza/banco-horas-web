@@ -1,0 +1,46 @@
+<h4 class="text-center">Cadastro de Nova Senha</h4>
+
+<form [formGroup]="form" class="form mt-4" (submit)="cadastrar()">
+
+  <div class="form-group">
+    <input formControlName="matricula" class="form-control" placeholder="Matrícula" #matriculaRef
+      (keyup)="verificarMatricula($event.target)" maxlength="5">
+
+    
+    <app-mensagem *ngIf="formControls.matricula.errors?.required" texto="Informe a matrícula.">
+    </app-mensagem>
+    <app-mensagem *ngIf="formControls.matricula.errors?.minlength" texto="Informe 5 digítos.">
+    </app-mensagem>
+    <app-mensagem *ngIf="formControls.matricula.errors?.numero" texto="Informe somente números.">
+    </app-mensagem>
+    <app-mensagem *ngIf="formControls.matriculaExistente.errors?.required" texto="Matrícula inexistente.">
+    </app-mensagem>
+  </div>
+
+  <div class="form-group">
+    <input formControlName="senhaAtual" type="password" class="form-control" placeholder="Senha Atual">
+    
+    <app-mensagem *ngIf="form.errors?.senhaAtualObrigatoria" texto="Informe a senha atual.">
+    </app-mensagem> 
+    <app-mensagem *ngIf="form.errors?.senhaAtualProibida" texto="Não informe a senha atual.">
+    </app-mensagem>
+  </div>
+
+  <div class="form-group">
+    <input formControlName="senhaNova" type="password" class="form-control" placeholder="Nova Senha">
+
+    <app-mensagem *ngIf="formControls.senhaNova.errors?.required" texto="Informe a nova senha.">
+    </app-mensagem>
+  </div>
+
+  <div class="form-group">
+    <input formControlName="senhaNovaConfirmacao" type="password" class="form-control" placeholder="Confirmação Nova Senha">
+
+    <app-mensagem *ngIf="formControls.senhaNovaConfirmacao.errors?.required" texto="Informe a confirmação da nova senha.">
+    </app-mensagem>
+  </div>
+
+  <button [disabled]="form.invalid" type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+</form>
+
+<p>Já possui senha cadastrada? <a [routerLink]="['']">Login!</a></p>
